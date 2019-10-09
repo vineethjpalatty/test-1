@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Newsapp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <link rel= stylesheet href="https //maxcdn.bootstrapcdn.com/bootstrap/4.7.0/css/font-awesome.min.css">
+
+    <style>
+
+        body {
+          margin: 0;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+          overflow: hidden;
+          background-color: black;
+        }
+
+        .topnav a {
+          float: left;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+        }
+
+        .topnav a:hover {
+          background-color: #D3D3D3;
+          color: black;
+        }
+
+        .topnav a.active {
+          background-color: #D3D3D3;
+          color: white;
+        }
+    </style>
+</head>
+<body bgcolor="black">
+    <div class="topnav">
+
+
+        <a href="{% url 'news' %}"><font color="white">Home</font></a>
+        <a href="{% url 'about' %}"><font color="white">About</font></a>
+        <a href="{% url 'weather' %}"><font color="white">Weather</font></a>
+        <a href="{% url 'logout' %}"><font color="white">Logout</font></a>
+    </div>
+    {% if user.is_authenticated %}
+
+
+        <section class="hero is-dark">
+          <div class="hero-body" style="padding-left: 50%">
+            <h1 class="title">About</h1>
+          </div>
+        </section>
+
+      <section class="section">
+
+        <nav class="level">
+
+          <div class="level-left">
+
+             <font size="50"> <h1>News</h1></font>
+          </div>
+
+
+
+
+
+
+              <div class="tile is-parent">
+                <article class="tile is-child notification is-primary">
+                  <div class="content">
+                   <p class="tile">...</p>
+
+                    <div class="content">
+
+                      <p>
+                        One should be updated on the latest happenings around the world. The site shows the top headlines across the globe and also news on areas of our interest.<br>
+                          Built with the content fetched from Newsapi.com:-News API is a simple and easy-to-use API that returns JSON metadata for headlines and articles live all over the web right now.
+                      </p>
+                    </div>
+                    </div>
+                </article>
+              </div>
+            </div>
+        </nav>
+      </section>
+
+       <section class="container">
+
+        <nav class="level">
+
+          <div class="level-left">
+
+              <div class="tile is-parent">
+                <article class="tile is-child notification is-primary">
+                  <div class="content">
+                   <p class="title">...</p>
+
+                    <div class="content">
+
+                      <p>
+                         The site provides the accurate weather condition and temperature of a particular location.<br>
+                          The content is fetched from openweathermap.co.
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+          </div>
+
+
+
+
+
+
+          <div class="level-right">
+            <font size="50"> <h1>Weather</h1></font>
+
+          </div>
+        </nav>
+       </section>
+    {% else %}
+        <p>You are not logged in</p>
+        <a href="{% url 'login' %}">login</a>
+    {% endif %}
+
+
+
+<div class="subtitle" style="background-color:black">
+	<footer style="padding-left: 40%">&copy;Vineeth J Palatty&nbsp;&nbsp; 2019
+	</footer>
+</div>
+</body>
+</html>

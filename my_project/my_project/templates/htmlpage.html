@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>NewsApp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css" />
+    <style>
+        body {
+          margin: 0;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+          overflow: hidden;
+          background-color: black;
+        }
+
+        .topnav a {
+          float: left;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+        }
+
+        .topnav a:hover {
+          background-color: #D3D3D3;
+          color: black;
+        }
+
+        .topnav a.active {
+          background-color: #4CAF50;
+          color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topnav">
+
+
+        <a href="{% url 'news' %}"><font color="white">Home</font></a>
+        <a href="{% url 'weather' %}"><font color="white">Weather</font></a>
+        <a href="{% url 'about' %}"><font color="white">About</font></a>
+        <a href="{% url 'logout' %}"><font color="white">Logout</font></a>
+    </div>
+    {% if user.is_authenticated %}
+    <section class="hero is-dark">
+        <div class="hero-body">
+            <div class="container" style="padding-left:40%">
+                <h1 class="title">
+                    Weather
+                </h1>
+            </div>
+        </div>
+    </section>
+    <div style="background-image:url('https://wallpapersite.com/images/pages/pic_w/10470.png');height:1000px">
+        <section class="section">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-offset-4 is-4">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="field has-addons">
+                                <div class="control is-expanded">
+                                    {{ form.name }}
+                                </div>
+                                <div class="control">
+                                    <button type="submit" class="button is-info">
+                                        search
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-offset-4 is-4">
+
+                        {% for city_weather in weather_data %}
+
+                        <div class="box" style="background-color:lightblue">
+                            <article class="media">
+                                <div class="media-left">
+                                    <figure class="image is-50x50">
+                                        <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="Image">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p>
+                                            <span class="title">{{ city_weather.city }}</span>
+                                            <br>
+                                            <span class="subtitle">{{ city_weather.temperature }}° F</span>
+                                            <br> {{ city_weather.description }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="media-right">
+                                    <a href="{% url 'delete_city' city_weather.city %}">
+                                        <button class="delete"></button>
+                                    </a>
+                                </div>
+
+                            </article>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+
+
+    {% else %}
+        <p>You are not logged in</p>
+        <a href="{% url 'login' %}">login</a>
+    {% endif %}
+
+</body>
+
+</html>

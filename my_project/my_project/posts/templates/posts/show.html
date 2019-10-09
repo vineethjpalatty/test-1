@@ -1,0 +1,93 @@
+<html>
+<head>
+    <title>show</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+      body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .topnav {
+      overflow: hidden;
+      background-color:linear-gradient(to right,  #3b125d, #2457d7);
+    }
+
+    .topnav a, welcome {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .topnav a:hover {
+      background-color: #D3D3D3;
+      color: black;
+    }
+    .topnav a.active {
+       background-color: #4CAF50;
+       color: white;
+    }
+    </style>
+</head>
+<body style="background: linear-gradient(to right, #2457d7, #3b125d);">
+<!--    <nav class="navbar navbar-light bg-dark justify-content-between" style="background-color: #1d07e6;">-->
+
+<!--        <form class="form-inline">-->
+<!--        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+<!--        </form>-->
+<!--    </nav>-->
+
+
+        <div class="topnav" style="padding top:1%">
+         <a href="{% url 'news' %}"><font color="white">Home</font></a>
+         <a href="{% url 'category' 'Business' %}"><font color="white">Business</font></a>
+         <a href="{% url 'category' 'Sports' %}"><font color="white">Sports</font></a>
+         <a href="{% url 'category' 'Technology' %}"><font color="white">Technology</font></a>
+         <a href="{% url 'weather' %}"><font color="white">Weather</font></a>
+         <a href="{% url 'editorial' %}"><font color="white">Editorial</font></a>
+         <a href="{% url 'articles' %}"><font color="white">Articles</font></a>
+         <a href="{% url 'upload' %}"><font color="white">Add Music</font></a>
+         <a href="{% url 'display' %}"><font color="white">Playlists</font></a>
+         <a href="{% url 'about' %}"><font color="white">About</font></a>
+            <form class="form-inline" style="padding-left:30%;padding-top:0.5%">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    <div style="background:url('https://thumbs.dreamstime.com/t/grey-silver-gradient-background-color-soft-light-gradient-grey-soft-bright-wallpaper-beautiful-grey-picture-gradient-hue-soft-118766849.jpg');height:5rem">
+            <h2 style="text-align:center;font-family:sans-serif;font-size:60">Playlists</h2>
+    </div>
+
+    {% for p in posts %}
+    <div style="padding:2%">
+        <div style="background-image:linear-gradient(rgba(500,500,500,.5), rgba(500,500,500,.5)),url('{{ p.image.url }}');background-size:cover;  height: 25vh;padding: 2rem;">
+            <div>
+                <font size="5" style="font-family:sans-serif">{{ p.title }}</font>
+            </div>
+            <div>
+            {{ p.description }}
+            </div>
+        </div>
+
+<!--        <img src="{{ p.image.url }}" >-->
+        <audio controls style="background-color:blue;width:100%">
+
+            <source src="{{ p.audio.url }}" type="audio/mp3" >
+
+
+                Your browser does not support the audio element.
+        </audio>
+    </div>
+    {% endfor %}
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<html>
+<head>
+    <title>NewsApp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <link rel= stylesheet href="https //maxcdn.bootstrapcdn.com/bootstrap/4.7.0/css/font-awesome.min.css">
+<style>
+
+        body {
+          margin: 0;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+          overflow: hidden;
+          background-color: black;
+        }
+
+        .topnav a {
+          float: left;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+        }
+
+        .topnav a:hover {
+          background-color: #D3D3D3;
+          color: black;
+        }
+
+        .topnav a.active {
+          background-color: #D3D3D3;
+          color: white;
+        }
+    </style>
+</head>
+<body bgcolor="black" style="height:100%">
+      <div class="topnav">
+          <a href="{% url 'news' %}"><font color="white">Home</font></a>
+         <a href="{% url 'category' 'Business' %}"><font color="white">Business</font></a>
+         <a href="{% url 'category' 'Sports' %}"><font color="white">Sports</font></a>
+         <a href="{% url 'category' 'Technology' %}"><font color="white">Technology</font></a>
+         <a href="{% url 'weather' %}"><font color="white">Weather</font></a>
+         <a href="{% url 'editorial' %}"><font color="white">Editorial</font></a>
+         <a href="{% url 'articles' %}"><font color="white">Articles</font></a>
+         <a href="{% url 'upload' %}"><font color="white">Add Music</font></a>
+         <a href="{% url 'display' %}"><font color="white">Playlists</font></a>
+         <a href="{% url 'about' %}"><font color="white">About</font></a>
+      </div>
+      <section class="hero is-dark">
+              <div class="hero-body" style="padding-left: 50%">
+                <h1 class="title">Articles</h1>
+              </div>
+      </section>
+      <br>
+    <div class="column">
+    {% for a in article %}
+
+        <div class="box" style="background-color:lightblue">
+                            <article class="media">
+
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p>
+                                            <span class="title">{{a.Heading}}</span>
+                                            <br>
+                                                {{a.Description}}
+
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="media-right">
+                                    <a href="{% url 'delete_article' a.Heading %}">
+                                        <button class="delete"></button>
+                                    </a>
+                                </div>
+
+                            </article>
+                        </div>
+
+
+    {% endfor %}
+    </div>
+</body>
+</html>

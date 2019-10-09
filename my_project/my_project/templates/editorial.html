@@ -1,0 +1,81 @@
+<html>
+<head>
+    <title>Newsapp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <link rel= stylesheet href="https //maxcdn.bootstrapcdn.com/bootstrap/4.7.0/css/font-awesome.min.css">
+    <style>
+
+        body {
+          margin: 0;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+          overflow: hidden;
+          background-color: black;
+        }
+
+        .topnav a {
+          float: left;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+        }
+
+        .topnav a:hover {
+          background-color: #D3D3D3;
+          color: black;
+        }
+
+        .topnav a.active {
+          background-color: #D3D3D3;
+          color: white;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="topnav">
+
+
+        <a href="{% url 'news' %}"><font color="white">Home</font></a>
+         <a href="{% url 'category' 'Business' %}"><font color="white">Business</font></a>
+         <a href="{% url 'category' 'Sports' %}"><font color="white">Sports</font></a>
+         <a href="{% url 'category' 'Technology' %}"><font color="white">Technology</font></a>
+         <a href="{% url 'weather' %}"><font color="white">Weather</font></a>
+         <a href="{% url 'editorial' %}"><font color="white">Editorial</font></a>
+         <a href="{% url 'articles' %}"><font color="white">Articles</font></a>
+         <a href="{% url 'upload' %}"><font color="white">Add Music</font></a>
+         <a href="{% url 'display' %}"><font color="white">Playlists</font></a>
+         <a href="{% url 'about' %}"><font color="white">About</font></a>
+         
+
+    </div>
+    <section class="hero is-primary">
+              <div class="hero-body" style="padding-left: 40%">
+                <h1 class="title">Editorial Board</h1>
+              </div>
+    </section>
+    <br>
+    <br>
+    <br>
+
+
+    <form method="post">
+        {% csrf_token %}
+
+        <h2>Title</h2> {{ form.Heading}}
+        <br>
+        <br>
+        <br>
+
+        <h2>Description</h2>{{ form.Description}}
+        <div align="middle">
+        <input type="submit" class="button is-info" value="submit">
+        </div>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+{%load widget_tweaks %}
+{%load static %}
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <style>
+        .myfieldclass{
+            background-color:white;
+            border-style:outset;
+
+        }
+        .border1{
+
+            padding-left:5%;
+         }
+        .header1{
+            color:white;
+        }
+
+    .topnav {
+      overflow: hidden;
+      background-color:linear-gradient(to right,  #3b125d, #2457d7);
+    }
+
+    .topnav a, welcome {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .topnav a:hover {
+      background-color: #D3D3D3;
+      color: black;
+    }
+    .topnav a.active {
+       background-color: #4CAF50;
+       color: white;
+    }
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </style>
+    </head>
+<body style="background: linear-gradient(to right, #2457d7, #3b125d)">
+
+     <div class="topnav">
+
+
+         <a href="{% url 'news' %}"><font color="white">Home</font></a>
+         <a href="{% url 'category' 'Business' %}"><font color="white">Business</font></a>
+         <a href="{% url 'category' 'Sports' %}"><font color="white">Sports</font></a>
+         <a href="{% url 'category' 'Technology' %}"><font color="white">Technology</font></a>
+         <a href="{% url 'weather' %}"><font color="white">Weather</font></a>
+         <a href="{% url 'editorial' %}"><font color="white">Editorial</font></a>
+         <a href="{% url 'articles' %}"><font color="white">Articles</font></a>
+         <a href="{% url 'upload' %}"><font color="white">Add Music</font></a>
+         <a href="{% url 'display' %}"><font color="white">Playlists</font></a>
+         <a href="{% url 'about' %}"><font color="white">About</font></a>
+
+
+    </div>
+     <section class="hero is-padding is-dark" style="height:100;background-color:black">
+          <div class="hero-body" style="padding-left: 45%;">
+              <h1 class="title" style="padding:2%"><font color="white" size="8"> LYRICS</font></h1>
+
+          </div>
+     </section>
+     <br>
+    <div style="width: 100%;">
+       <div style="float:left; width: 50%">
+            <form method="POST" action="{% url 'upload' %}" enctype='multipart/form-data'>
+                 {% csrf_token %}
+                 <div class="border1">
+                    <h2 class="header1">Song Title:</h2>{% render_field form.title class+='myfieldclass' %}
+                 </div>
+                 <div class="border1">
+                    <h2 class="header1">Lyrics:</h2>{% render_field form.description class+='myfieldclass' %}
+                 </div>
+                 <div class="border1">
+                     <h2 class="header1">Cover-image:</h2>{% render_field form.image %}
+                 </div>
+                 <div class="border1">
+                     <h2 class="header1">Audio:</h2>{% render_field form.audio %}
+                 </div>
+                 <br>
+                 <div style="padding-left:40%">
+                    <input type="submit" class="button is-info" value="submit">
+                 </div>
+             </form>
+       </div>
+       <div style="float:right;width:50%">
+           <img src="{%static 'images/singer.jpeg' %}" style="height:90%">
+       </div>
+    </div>
+    <div style="clear:both"></div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
